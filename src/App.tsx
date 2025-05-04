@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState, useEffect } from "react";
+import { toggleTheme } from "./rtk/slices/themeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "./rtk/myStore";
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+  const isDayTheme = useSelector(
+    (state: RootState) => state.myThemeSlice.dayTheme
+  );
+  const dispatch = useDispatch<AppDispatch>();
 
+  const appStyle = {
+    backgroundColor: isDayTheme ? "#ffffff" : "#121212",
+    color: isDayTheme ? "#333333" : "#ffffff",
+    minHeight: "100vh",
+    minWidth: "100vw",
+    // display: "flex",
+    // flexDirection: "column",
+    // alignItems: "center",
+    // justifyContent: "center",
+    transition: "all 0.3s ease",
+  };
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div style={appStyle}>
+      App
+      <br />
+      <button type="submit" onClick={() => dispatch(toggleTheme())}>
+        Change Theme
+      </button>
+      {isDayTheme ? "Day Mode 🌞" : "Night Mode 🌙"}
+    </div>
+  );
+};
 
-export default App
+export default App;
