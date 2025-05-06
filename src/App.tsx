@@ -1,7 +1,8 @@
-// import { useState, useEffect } from "react";
+import "./App.css";
 import { toggleTheme } from "./rtk/slices/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "./rtk/myStore";
+import UserAuthentication from "./UserAuthentication";
 
 export const App = () => {
   const isDayTheme = useSelector(
@@ -14,20 +15,24 @@ export const App = () => {
     color: isDayTheme ? "#333333" : "#ffffff",
     minHeight: "100vh",
     minWidth: "100vw",
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-    // justifyContent: "center",
     transition: "all 0.3s ease",
   };
   return (
-    <div style={appStyle}>
-      App
-      <br />
-      <button type="submit" onClick={() => dispatch(toggleTheme())}>
-        Change Theme
-      </button>
-      {isDayTheme ? "Day Mode 🌞" : "Night Mode 🌙"}
+    <div style={appStyle} className="app-section">
+      <div className="btn-section">
+        <button
+          type="submit"
+          onClick={() => dispatch(toggleTheme())}
+          className="theme-btn"
+        >
+          Change Theme
+        </button>{" "}
+        &nbsp;
+        {`It is ${isDayTheme ? "Day Mode 🌞" : "Night Mode 🌙"}`}
+      </div>
+      <div className="user-section">
+        <UserAuthentication />
+      </div>
     </div>
   );
 };

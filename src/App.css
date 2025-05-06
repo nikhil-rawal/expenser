@@ -1,0 +1,9 @@
+.app-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.theme-btn {
+  padding: 3px;
+}
