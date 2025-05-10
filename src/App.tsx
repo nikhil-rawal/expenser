@@ -17,6 +17,7 @@ export const App = () => {
     minWidth: "100vw",
     transition: "all 0.3s ease",
   };
+
   return (
     <div style={appStyle} className="app-section">
       <div className="btn-section">
